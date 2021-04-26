@@ -8,6 +8,8 @@ translationCount=0
 def translate(data,language):
     global report
     global translationCount
+    if(type(data) ==  int):
+        return data
     for x in data:
         if(type(data[x]) == str):
             print("-> "+data[x])

@@ -3,25 +3,28 @@ from lib.translator import start_translate,validateJSON
 import threading
 from logo import plogo
 from lang import lang_choices
-
+import pyperclip
 languages={x[1]:x[0] for x in lang_choices}
+translateButtonDisabled = False
+
 
 sg.theme('DarkBlue')  # please make your windows colorful
 
 a=sg.Titlebar(title="sss")
 # sg.SystemTray(
+
 #     filename = "icon.ico"
 #   )
 
 
 layout = [[sg.Text(' JSON Translator'), sg.Text(size=(12,1))],[],
           [sg.Multiline(	border_width=1,default_text='Paste your JSON here', size=(45,20),text_color="white",key='-IN-'),
-          sg.Multiline('', size=(45,20),text_color="white",key='-OUTPUT-')]
+          sg.Multiline('', size=(45,20),text_color="white",key='-OUTPUT-',right_click_menu=(0,["Clear","Copy to Clipboard"]))]
   ,[sg.Text('Status')],
 
           [sg.Multiline('',key="status",size=(95,5),autoscroll=True,     auto_refresh = True,  reroute_stdout = True,text_color="#00FF00",background_color="black")],
                     [sg.Text("Language :"),sg.Combo(list(languages.keys()),key='dropdown',size=(18,6),tooltip="Select Language",default_value="French")],
-                   [sg.Button('Translate'),sg.Button('About'), sg.Button('Exit')],
+                   [sg.Button('Translate',disabled=translateButtonDisabled),sg.Button('About'), sg.Button('Exit')],
           
           ]
 
@@ -39,8 +42,10 @@ while True:  # Event Loop
         sg.popup('anand467\nhttps://github.com/anandu467')
     if event == 'Translate':
         window["status"].update("")
+        translateButtonDisabled=True
         if(not validateJSON(values['-IN-'])=="valid"):
             sg.popup_error("Invalid JSON")
+            translateButtonDisabled=False
         else:
         # print(languages.get(values['dropdown']))
         # change the "output" element to be the value of "input" element
@@ -48,6 +53,12 @@ while True:  # Event Loop
         
     if event=="-TRANSLATED-":
         window['-OUTPUT-'].update(values[event])
+        translateButtonDisabled=False
+    if event=="Copy to Clipboard":
+        pyperclip.copy(values["-OUTPUT-"])
+    if event=="Clear":
+        window["-OUTPUT-"].update("")
+
 
         
 
