@@ -51,7 +51,7 @@ sg.SaveAs("Open",file_types=(("JSON Files", "*.json"),),enable_events=True)],
   ,[sg.Text('Status')],
 
           [sg.Multiline('',key="status",pad=(0,10),size=(95,5),autoscroll=True,     auto_refresh = True,  reroute_stdout = True,text_color="#00FF00",background_color="black")],
-                    [sg.Text("Language :"),sg.Combo(list(languages.keys()),key='dropdown',size=(18,6),tooltip="Select Language",default_value="French"), sg.Text(' '*60),sg.Button('Translate',disabled=translateButtonDisabled,border_width=2,button_color=('black', "#7ACED7"),),sg.Button('  About  ',key="About",border_width=2,button_color=('black', "#7ACED7"),),sg.Button('  Exit  ',border_width=2,button_color=('black', "#7ACED7"),key="Exit")],
+                    [sg.Text("Language :"),sg.Combo(list(languages.keys()),key='dropdown',readonly=True,size=(18,6),tooltip="Select Language",default_value="French"), sg.Text(' '*60),sg.Button('Translate',disabled=translateButtonDisabled,border_width=2,button_color=('black', "#7ACED7"),),sg.Button('  About  ',key="About",border_width=2,button_color=('black', "#7ACED7"),),sg.Button('  Exit  ',border_width=2,button_color=('black', "#7ACED7"),key="Exit")],
                    [],
           
           ]
