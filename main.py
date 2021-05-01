@@ -2,10 +2,10 @@ import PySimpleGUI as sg
 from lib.translator import start_translate,validateJSON
 import threading
 from pathlib import Path
-from lang import lang_choices
+from lang import languages
 from lib.fileutils import readText,writeText
 import pyperclip
-languages={x[1]:x[0] for x in lang_choices}
+
 translateButtonDisabled = False
 
 fileBrowseAction ="OPEN"
