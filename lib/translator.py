@@ -8,12 +8,13 @@ translationCount=0
 def translate(data,language):
     global report
     global translationCount
+    if not (data): return data
     if(type(data) in  [int,float]):
         return data
     if type(data) ==list:
         return [translate(x,language) for x in data ]
     for x in data:
-        if(type(data[x]) == str):
+        if(type(data[x]) == str and data[x].strip() !=""):
             print("-> "+data[x])
             try:
                 data[x] = GoogleTranslator(
