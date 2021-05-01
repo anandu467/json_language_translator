@@ -98,12 +98,12 @@ while True:  # Event Loop
         window.FindElement('SaveAs').click()
 
             
-    if event=="SaveAs":
+    if event=="SaveAs" and values[event]!="":
         filePath = Path(values[event])
         status=writeText(filePath,values["-OUTPUT-"])
         if (status):
             sg.popup_ok("Saved")
-    if event=="Open":
+    if event=="Open" and values[event]!="":
         filePath = Path(values[event])
         window["-IN-"].update(readText(filePath))
 
