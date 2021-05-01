@@ -1,7 +1,6 @@
 import PySimpleGUI as sg
 from lib.translator import start_translate,validateJSON
 import threading
-from logo import plogo
 from lang import lang_choices
 import pyperclip
 languages={x[1]:x[0] for x in lang_choices}
